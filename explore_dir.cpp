@@ -23,20 +23,11 @@ explore_dir::explore_dir(string dirname):number_files(0){
   }
 }
 
-void explore_dir::write_in_file(string file,string text){
-  ofstream ofs(file,ios::app);
-  if(ofs.is_open()){
-  ofs << text;
-  }else{
-    cerr<<"Cannot load file"<<endl;
-  }
-}
-
 void explore_dir::seek_at_pos(long pos){
   seekdir(dir, pos);
 }
 
-void explore_dir::back_to_begening(){
+void explore_dir::back_begening_dir(){
   rewinddir(dir);
 }
 
@@ -49,26 +40,13 @@ void explore_dir::display(ostream & os)const{
   copy(files.begin(), files.end(), ostream_iterator<string>(os, "\n"));
 }
 
-bool explore_dir::isDir(string file){
-  if(file.find('.')){
-    return false;
-  }else{
-    return true;
-  }
-}
-
-bool explore_dir::exists(string file){
+bool explore_dir::is_in_dir(string file){
   auto it = find(files.begin(),files.end(),file);
   if(it!=files.end()){
     return true;
   }else{
     return false;
   }
-}
-
-void explore_dir::read_file(string file){
-  ifstream ifs(file,ios::in);
-  
 }
 
 explore_dir::~explore_dir(){
@@ -79,3 +57,4 @@ ostream & operator <<(ostream & os,explore_dir & d){
   d.display(os);
 }
 
+vector<string> explore_dir::getFiles(){return files;}
