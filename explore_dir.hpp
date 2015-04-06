@@ -1,7 +1,7 @@
 #ifndef EXPLORE_DIR
 #define EXPLORE_DIR
 #include "dirent.h"
-#include "file_tools.hpp"
+#include "file_tools.cpp"
 #include <string>
 #include <vector>
 
@@ -11,7 +11,7 @@
 
 using namespace std;
 
-class explore_dir : public file_tools{
+class explore_dir {
 private:
   vector<string> files;
   DIR * dir;
